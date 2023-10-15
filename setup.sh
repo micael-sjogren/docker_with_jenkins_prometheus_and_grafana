@@ -8,8 +8,12 @@ sudo mkdir -p /etc/prometheus/
 SCRIPTS=("docker_cleanup" "docker_firewall" "docker_install" "docker_jenkins_install" "docker_grafana_install" "docker_prometheus_install" "prometheus.yml")
 
 for script in "${SCRIPTS[@]}"; do
-  sudo curl -o "/home/$SUDO_USER/$script.sh" "$BASE_URL$script"
-  sudo chmod +x "/home/$SUDO_USER/$script.sh"
+  if [ "$script" == "prometheus.yml" ]; then
+    sudo curl -o "/home/$SUDO_USER/$script" "$BASE_URL$script"
+  else
+    sudo curl -o "/home/$SUDO_USER/$script.sh" "$BASE_URL$script"
+    sudo chmod +x "/home/$SUDO_USER/$script.sh"
+  fi
 done
 
 sudo /home/$SUDO_USER/docker_cleanup.sh
