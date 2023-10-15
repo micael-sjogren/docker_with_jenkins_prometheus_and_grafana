@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo dnf install -y java-11-openjdk wget curl
+sudo docker run --restart=always -d -e JAVA_OPTS="-Dhudson.util.ProcessTree.disable=true" -p 8080:8080 -p 50001:50000 jenkins/jenkins:lts
