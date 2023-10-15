@@ -1,31 +1,32 @@
 #!/usr/bin/env bash
 
-sudo curl -o docker_cleanup.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/blob/main/docker_cleanup"
-chmod +x docker_cleanup.sh
+# Ensure prometheus directory exists
+sudo mkdir -p /etc/prometheus/
 
-sudo curl -o docker_firewall.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/blob/main/docker_firewall"
-chmod +x docker_firewall.sh
+# Verify script URLs and download them
+sudo curl -o /home/$USER/docker_cleanup.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/main/docker_cleanup"
+sudo curl -o /home/$USER/docker_firewall.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/main/docker_firewall"
+sudo curl -o /home/$USER/docker_install.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/main/docker_install"
+sudo curl -o /home/$USER/docker_jenkins_install.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/main/docker_jenkins_install"
+sudo curl -o /home/$USER/docker_grafana_install.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/main/docker_grafana_install"
+sudo curl -o /etc/prometheus/prometheus.yml "https://raw.githubusercontent.com/micael-sjogren/cicd/main/prometheus.yml"
+sudo curl -o /home/$USER/docker_prometheus_install.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/main/docker_prometheus_install"
 
-sudo curl -o docker_install.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/blob/main/docker_install"
-chmod +x docker_install.sh
+# Make scripts executable
+sudo chmod +x /home/$USER/docker_cleanup.sh
+sudo chmod +x /home/$USER/docker_firewall.sh
+sudo chmod +x /home/$USER/docker_install.sh
+sudo chmod +x /home/$USER/docker_jenkins_install.sh
+sudo chmod +x /home/$USER/docker_grafana_install.sh
+sudo chmod +x /home/$USER/docker_prometheus_install.sh
 
-sudo curl -o docker_jenkins_install.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/blob/main/docker_jenkins_install"
-chmod +x docker_jenkins_install.sh
-
-sudo curl -o docker_grafana_install.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/blob/main/docker_grafana_install"
-chmod +x docker_grafana_install.sh
-
-sudo curl -o prometheus.yml "https://raw.githubusercontent.com/micael-sjogren/cicd/blob/main/prometheus.yml"
-sudo curl -o docker_prometheus_install.sh "https://raw.githubusercontent.com/micael-sjogren/cicd/blob/main/docker_prometheus_install"
-chmod +x docker_prometheus_install.sh
-
-
-sudo ./docker_cleanup.sh
-sudo ./docker_install.sh
-sudo ./docker_jenkins_install.sh
-sudo ./docker_grafana_install.sh
-sudo ./docker_prometheus_install.sh
-sudo ./docker_firewall.sh
+# Execute scripts
+sudo /home/$USER/docker_cleanup.sh
+sudo /home/$USER/docker_install.sh
+sudo /home/$USER/docker_jenkins_install.sh
+sudo /home/$USER/docker_grafana_install.sh
+sudo /home/$USER/docker_prometheus_install.sh
+sudo /home/$USER/docker_firewall.sh
 
 
 
