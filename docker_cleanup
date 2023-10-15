@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+sudo rm -f ./install.sh
+sudo docker stop $(docker ps -aq) || true
+sudo docker ps -aq | xargs -r sudo docker rm
+sudo docker images -q | xargs -r sudo docker rmi
+sudo dnf remove -y docker-ce docker-ce-cli containerd.io podman buildah || true
