@@ -20,12 +20,12 @@ sudo curl -o /home/docker_prometheus_install.sh "https://raw.githubusercontent.c
 chmod +x /home/docker_prometheus_install.sh
 
 
-sudo ./home/docker_cleanup.sh
-sudo ./home/docker_install.sh
-sudo ./home/docker_jenkins_install.sh
-sudo ./home/docker_grafana_install.sh
-sudo ./home/docker_prometheus_install.sh
-sudo ./home/docker_firewall.sh
+sudo /home/docker_cleanup.sh
+sudo /home/docker_install.sh
+sudo /home/docker_jenkins_install.sh
+sudo /home/docker_grafana_install.sh
+sudo /home/docker_prometheus_install.sh
+sudo /home/docker_firewall.sh
 
 
 
