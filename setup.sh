@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
 
-sudo mkdir -p /etc/prometheus/
- 
-sudo curl -o /home/$SUDO_USER/docker_cleanup.sh "https://raw.githubusercontent.com/micael-sjogren/docker_with_jenkins_prometheus_and_grafana/main/docker_cleanup"
-sudo curl -o /home/$SUDO_USER/docker_firewall.sh "https://raw.githubusercontent.com/micael-sjogren/docker_with_jenkins_prometheus_and_grafana/main/docker_firewall"
-sudo curl -o /home/$SUDO_USER/docker_install.sh "https://raw.githubusercontent.com/micael-sjogren/docker_with_jenkins_prometheus_and_grafana/main/docker_install"
-sudo curl -o /home/$SUDO_USER/docker_jenkins_install.sh "https://raw.githubusercontent.com/micael-sjogren/docker_with_jenkins_prometheus_and_grafana/main/docker_jenkins_install"
-sudo curl -o /home/$SUDO_USER/docker_grafana_install.sh "https://raw.githubusercontent.com/micael-sjogren/docker_with_jenkins_prometheus_and_grafana/main/docker_grafana_install"
-sudo curl -o /home/$SUDO_USER/prometheus.yml "https://raw.githubusercontent.com/micael-sjogren/docker_with_jenkins_prometheus_and_grafana/main/prometheus.yml"
-sudo curl -o /home/$SUDO_USER/docker_prometheus_install.sh "https://raw.githubusercontent.com/micael-sjogren/docker_with_jenkins_prometheus_and_grafana/main/docker_prometheus_install"
+GITHUB_USER="micael-sjogren"
+BASE_URL="https://raw.githubusercontent.com/$GITHUB_USER/docker_with_jenkins_prometheus_and_grafana/main/"
 
-sudo chmod +x /home/$SUDO_USER/docker_cleanup.sh
-sudo chmod +x /home/$SUDO_USER/docker_firewall.sh
-sudo chmod +x /home/$SUDO_USER/docker_install.sh
-sudo chmod +x /home/$SUDO_USER/docker_jenkins_install.sh
-sudo chmod +x /home/$SUDO_USER/docker_grafana_install.sh
-sudo chmod +x /home/$SUDO_USER/docker_prometheus_install.sh
+sudo mkdir -p /etc/prometheus/
+
+SCRIPTS=("docker_cleanup" "docker_firewall" "docker_install" "docker_jenkins_install" "docker_grafana_install" "docker_prometheus_install" "prometheus.yml")
+
+for script in "${SCRIPTS[@]}"; do
+  sudo curl -o "/home/$SUDO_USER/$script.sh" "$BASE_URL$script"
+  sudo chmod +x "/home/$SUDO_USER/$script.sh"
+done
 
 sudo /home/$SUDO_USER/docker_cleanup.sh
 sudo /home/$SUDO_USER/docker_install.sh
