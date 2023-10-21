@@ -9,7 +9,11 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! docker ps -a | grep -q "jenkins/jenkins:lts"; then
+if ! command -v xclip &> /dev/null; then
+    sudo dnf install xclip -y
+fi
+
+if ! docker ps -a | grep -q "jenkins_container"; then
     sudo docker run --restart=always -d -p 8080:8080 -p 50000:50000 --name jenkins_container jenkins/jenkins:lts
 fi
 
