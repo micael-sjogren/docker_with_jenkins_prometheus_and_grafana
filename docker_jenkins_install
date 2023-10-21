@@ -12,4 +12,6 @@ sudo systemctl enable jenkins
 sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
 sudo firewall-cmd --reload
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword | xclip -selection clipboard
+
 
