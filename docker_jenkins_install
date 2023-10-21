@@ -1,17 +1,25 @@
 #!/usr/bin/env bash
 
-sudo dnf install java-1.8.0-openjdk -y
+# Check if Jenkins is installed
+if ! command -v java &> /dev/null; then
+    echo "Java is not installed. Installing Java..."
+    sudo dnf install java-1.8.0-openjdk -y
+fi
 
-sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-sudo dnf update -y
-sudo dnf install jenkins -y
-sudo systemctl status jenkins
-sudo systemctl start jenkins
-sudo systemctl enable jenkins
-sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
-sudo firewall-cmd --reload
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+if ! command -v docker &> /dev/null; then
+    echo "Docker is not installed. Please install Docker and run this script again."
+    exit 1
+fi
+
+if ! docker ps -a | grep -q "jenkins/jenkins:lts"; then
+    echo "Jenkins is not installed. Installing Jenkins..."
+    sudo docker run --restart=always -d -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts
+fi
+
+# Wait for Jenkins to start (you may need to adjust the sleep duration)
+sleep 30
+
+# Retrieve and copy the initial admin password to clipboard
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword | xclip -selection clipboard
 
-
+echo "Jenkins is installed and the initial admin password is copied to the clipboard."
