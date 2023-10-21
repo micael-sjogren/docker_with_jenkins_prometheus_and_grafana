@@ -17,8 +17,5 @@ if ! docker ps -a | grep -q "jenkins_container"; then
     sudo docker run --restart=always -d -p 8080:8080 -p 50000:50000 --name jenkins_container jenkins/jenkins:lts
 fi
 
-sleep 30
 
-docker exec -it jenkins_container cat /var/jenkins_home/secrets/initialAdminPassword | xclip -selection clipboard
 
-echo "Jenkins is installed and the initial admin password is copied to clipboard."
