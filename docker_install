@@ -1,9 +1,23 @@
 #!/usr/bin/env bash
 
+# Install Yum Utilities
 sudo dnf install -y yum-utils
+
+# Add Docker Repository
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+# Install Docker Components
 sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Enable and Start Docker Service
 sudo systemctl enable docker
 sudo systemctl start docker
+
+# Check Docker Service Status
 sudo systemctl status docker --no-pager
+
+# Add current user to Docker group
 sudo usermod -aG docker $USER
+
+# Install Subversion (svn)
+sudo dnf install -y subversion
