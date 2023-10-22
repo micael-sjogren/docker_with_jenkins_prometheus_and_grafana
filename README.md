@@ -4,7 +4,7 @@ setup docker with jenkins, prometheus and grafana on existing rocky minimal linu
 
 usage: 
 
-sudo curl -o setup.sh "https://raw.githubusercontent.com/micael-sjogren/docker_with_jenkins_prometheus_and_grafana/main/setup.sh"
+sudo curl -o setup.sh "https://raw.githubusercontent.com/micael-sjogren/docker_with_jenkins_prometheus_and_grafana/setup.sh"
 
 sudo chmod +x setup.sh
 
