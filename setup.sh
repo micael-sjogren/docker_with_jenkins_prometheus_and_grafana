@@ -4,7 +4,7 @@ GITHUB_USER="micael-sjogren"
 BASE_URL="https://raw.githubusercontent.com/$GITHUB_USER/docker_with_jenkins_prometheus_and_grafana/main/"
 
 
-#sudo mkdir -p /etc/prometheus/
+sudo mkdir -p /etc/prometheus/
 
 SCRIPTS=("docker_cleanup" "docker_firewall" "docker_install" "docker_jenkins_install" "docker_grafana_install" "docker_prometheus_install" "prometheus.yml")
 
