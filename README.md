@@ -6,6 +6,8 @@ sudo curl -o setup.sh "https://raw.githubusercontent.com/micael-sjogren/docker_w
 sudo chmod +x setup.sh 
 
 sudo ./setup.sh
+
+# sudo docker exec -it jenkins_container cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-#sudo docker exec -it jenkins_container cat /var/jenkins_home/secrets/initialAdminPassword
+
