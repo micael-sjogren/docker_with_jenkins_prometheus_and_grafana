@@ -2,6 +2,6 @@
 
 sudo rm -r /home/$SUDO_USER/prometheus.yml
 sudo curl -o /home/$SUDO_USER/prometheus.yml "https://raw.githubusercontent.com/$GITHUB_USER/cicd/main/prometheus.yml"
-sudo docker run --restart=always -d -p 9090:9090 -v /home/$SUDO_USER/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+sudo docker run --restart=always -d -p 9090:9090 -v /home/ci/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
 
